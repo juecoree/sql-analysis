@@ -1,0 +1,110 @@
+#### GITHUB REPOSITORY <hr>
+[https://github.com/steemit/steem](https://github.com/steemit/steem)
+
+#### DETAILS <hr>
+
+In this analysis, it aims to further evaluate the data trends and the current status of the Account Recovery in Steemit. In addition, it aims to see new trends and changes in the Account recovery activities in the Steemit blockchain to establish a good proof of either there is an  increasing trends, which was projected in the previous month,  or a decrease trends, which was due to more information about the phishing websites. 
+
+The query and data extraction will focus on the **TxAccountRecovers** table in the Steemsql database where specific conditions in the query is made to specifically obtain the data regarding:
+- the number of account recovery request, the percentage and chance of an account to be recovered as well as the odds of failure; and
+- the performances of the different recovery accounts in accordance to the percentage of success and failure to recover an account.
+
+
+This is done to obtain the daily plot and averages which will use to point out the exact data trends of the account recovery. In this way, a clear picture of the Account Recovery activities can be assessed and evaluated in accordance to recovery account and account to recover behaviors and performance, as applicable.
+
+#### OUTLINE <hr>
+
+I. Scopes of Analysis <br>
+II. Tools and Query <br>
+III. Data Presentation and Result <br>
+> Account Recovery Trends and Recovery Account performance<br>
+
+IV. Conclusion
+
+#### I. SCOPE OF ANALYSIS <hr>
+
+The analysis performed using the data extracted from [SteemSQL](www.steemsql.com) database on 10:00 am (UCT), May 6, 2018. The data extraction is concentrated on a 1 month time frame between April 01 to 30, 2018.  The analysis focuses on the account recovery which was recorded on the **TxAccountRecovers** table on [SteemSQL](www.steemsql.com) database.
+
+The query run involves counts of account recovery requests both which can show the success and failure in recovery.  In addition, the query also involves looking into the different recovery account that performs or processes  the recovery.
+
+Specific data counts based on conditional queries were included by changing the WHERE condition of each queries to address the different columns in the **TxAccountRecovers** table as follows:
+-  **TxAccountRecovers.recovered** column which contains the  bit data to verify if the account has been recovered; and,
+- **TxAccountRecovers.recovery_account** columns which holds the accounts that responsible in the recovery.
+
+After extracting the data, it is subjected to analysis and observation with the use of  basic statistical measures such as averages, with the aid of Microsoft Excel.  Visuals and graphs, as applicable, is included in this write up.
+
+#### II. TOOLS AND QUERY <hr>
+
+The data extracted from the [SteemSQL](www.steemsql.com) database using Microsoft Excel. All data processing was done in Microsoft Excel  which includes data visualization and statistics. 
+
+A full extraction of **TxAccountRecovers** table data was done at first to observe the data and to be able  to get the specific data for this analysis. The query used in the extraction is provided below.
+
+```
+SELECT*FROM TxAccountRecovers (NOLOCK)
+WHERE TxAccountRecovers.timestamp >= '2018/04/01' AND	
+    TxAccountRecovers.timestamp < '2018/05/01' AND	
+```
+<br>
+So, to get the specific counts of all account recovery request, the core query  is included with an additional ```WHERE``` condition, ```TxAccountRecovers.recovered = 'FALSE'```.  In addition, the addition condition is change to ```TxAccountRecovers.recovered = 'TRUE'``` in order to get the full count of recovered account.  By the way, the query is structured so that the extracted data is tabulated as a daily count of the variables considered in this analysis. The complete query is provided below.
+
+```
+SELECT	
+    MONTH(TxAccountRecovers.timestamp) AS [MONTH],
+    DAY(TxAccountRecovers.timestamp) AS [DAY],	
+    COUNT(TxAccountRecovers.account_to_recover) AS [ACCOUNT_TO_RECOVER]	
+FROM	
+	TxAccountRecovers (NOLOCK)
+WHERE	
+    YEAR(TxAccountRecovers.timestamp) = 2018 AND
+    TxAccountRecovers.timestamp >= '2018/04/01' AND	
+    TxAccountRecovers.timestamp < '2018/05/01' AND	
+    TxAccountRecovers.recovered = ''	
+GROUP BY 	
+	MONTH(TxAccountRecovers.timestamp),
+    DAY(TxAccountRecovers.timestamp)	
+
+```
+
+<br>
+Furthermore, additional queries was done to verify the recovery accounts performance by adding a new ```WHERE``` condition: ```TxAccountRecovers.recovery_account = ''```. The list of recovery account was obtain using the pivot table in Microsoft Excel.  So, the new WHERE clause is:
+
+```
+WHERE	
+    YEAR(TxAccountRecovers.timestamp) = 2018 AND
+    TxAccountRecovers.timestamp >= '2018/04/01' AND	
+    TxAccountRecovers.timestamp < '2018/05/01' AND	
+    TxAccountRecovers.recovered = ''	AND
+    TxAccountRecovers.recovery_account = ''
+
+```
+
+
+#### III. . DATA PRESENTATION AND RESULT <hr>
+
+| ![](https://steemitimages.com/DQmZUKsQFVKxBn7jUuKBLYUXkCD6u5JJs7qssFuPrbrPmxv/image.png) |
+|:---:|
+
+
+An 83% recovery of all account recovery request was successful against 17% that was not recovered. On average, there are 7 accounts per day who applied for recovery, with 6 of this were recovered. This averages tops the previous month account recovery.  The April averages is 2 account less as compared to the previous month. This suggest that there are lesser account has been stolen or lost as compared to the previous month. 
+
+The downward trend in the account recovery request tells a good story of awareness in users and actions of developers about phishing and scamming sites on Steemit.  However, the good numbers right now excludes those users who does not apply or request for recovery.  Overall, the numbers and the down trend points out a better averages on the upcoming months. If the trend is sustained, we can expect a lower than 7 accounts per day on average.
+
+Inn terms of the actual recovery of this accounts, the recovery accounts has been doing a great job maintaining the recovery rate per day above 50% on the 30-day count. This is a good indication that the Steemit  developers has been acting immediately to this request. This can be observe that most of the account recovery request and the actual recovery occurred on the same day.
+
+In April 2018, there are 7 listed recovery account with 2 have done a perfect job in recovering these accounts. For the 6 recovery accounts, the have not recovered at least a single account. This two accounts who successfully recovers a total of 171 request, where @steem and @anonsteem.
+
+The recovery account @steem processed 93.72% of the 207 request. It has a success rate of 87.11% against the 12.89% failure. It has recovered a total of 169 accounts in 30-days. The current success rate of @steem is 5% lower as compared to the previous months but this is way above higher than the other recovery accounts. It is projected that@steem success rate were be around the 90% mark in the next month. On the other hand, @anonsteem  processed 1.45% of the 207 request with a 66.67% success rate on top of 33.33% failure.  Aside from the recovery account mentioned earlier, the other accounts will sustain a 0% chance of recovering an account.
+
+Overall, majority of account recovery was performed by @steem with 87.11% recovery on top of the 83% recovery in April 2018. The downward trends in account recovery request and a high chance of recovery shows a good benchmark of a better actions between users and developer of the platform towards account security and privacy, which was indicated in the daily averages and plot trends.
+
+Lastly, does the account recovery sustained success? Yes! It has sustained a success from the previous month up to April 2018.  A high success rate of the top 2 recovery account @steem and @anonsteem with 87.11% and 66.67% respectively shows a positive approval of success, take note tha this numbers where on top of the full percentage of recovery at 83%.
+
+#### IV. CONCLUSION <hr>
+
+The following conclusion can be drawn from the analysis:
+
+- There are lesser request for account recovery in April 2018 after a peak counts in the previous month ([January to March Report](https://steemit.com/utopian-io/@juecoree/analysis-is-there-an-increase-in-account-recovery-request-amidst-scams-and-phishings-in-steemit)). There is still a good numbers in percentage in terms of the the successfully recovered accounts.  Overall, there is an 83% of the 207 request were processed and recovered. This was mostly done by the recovery account @steem, which has an 87.11% success rate. 
+
+- A downward trends in the daily account recovery request plot. This shows a significant decrease in the number of account recovery request, where most ly half of the plot is below the average line at 7 accounts per day. This was a good indication that there was an established culture in the Steemit community about the presence of scam and phishing websites in the Steemit blockchain. This is a good proof that the developers and users have take actions on strengthen the security and privacy of each accounts.
+
+
