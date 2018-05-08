@@ -1,0 +1,134 @@
+#### GITHUB REPOSITORY <hr>
+[https://github.com/steemit/steem](https://github.com/steemit/steem)
+
+#### DETAILS <hr>
+
+In this analysis, it aims to see and evaluate the data trends and user's transfer activities based on the deposits and withdraws done in the Steemit blockchain. In addition, the data from the deposit and withdrawals is compared to the changes in the Steem dollars and Steem exchange rate against the US dollar, which was take from the historical data at [coinmarketcap.com](www.coinmarketcap.com).
+
+The query and data extraction will focus on the **TxTransfer** table in the [Steemsql](www.steemsql.com) database where specific conditions in the query is made to specifically obtain the data regarding:
+
+> - the number of transactions as deposit to, and withdraws from savings, which also includes transaction counts as per Steem dollar and Steem; and,
+
+> - the averages of deposited and withdrawn amount of both Steem dollar and Steem.
+
+
+This is done to obtain the daily plot and averages which will be use to point out the exact data trends  and behavior of user's deposit to, and withdrawals from savings.
+
+#### OUTLINE <hr>
+
+I. Scopes of Analysis <br>
+II. Tools and Query <br>
+III. Data Presentation and Result <br>
+> Savings Transactions and <br>
+
+IV. Conclusion
+
+#### I. SCOPE OF ANALYSIS <hr>
+
+The analysis performed using the data extracted from [SteemSQL](www.steemsql.com) database on 6:00 pm (UCT), May 7, 2018. The data extraction is concentrated on a 1 month time frame between April 01 to 30, 2018.  The analysis focuses on the account recovery which was recorded on the **TxTransfers** table on [SteemSQL](www.steemsql.com) database.
+
+The query run involves counts of distinct two transfer type:  transfer to savings and transfer from savings, which is used to evaluate the saving's deposit and withdrawals behavior.   In addition, the query categorized  based on the type of currency used in the transfer,Steem dollar (SBD) and Steem.
+
+Specific data counts based on conditional queries were included by changing the WHERE condition of each queries to address the different columns in the **TxTransfers** table as follows:
+
+-  **TxTransfers.type** column which contains the bit data to verify if the type of transfer transaction; and,
+- **TxTransfers.amount_symbol** columns which holds the monetary currency used of either Steem dollar and Steem.
+
+After extracting the data, it is subjected to analysis and observation with the use of  basic statistical measures such as averages, with the aid of Microsoft Excel.  Visuals and graphs, as applicable, is included in this write up.
+
+#### II. TOOLS AND QUERY <hr>
+
+The data extracted from the [SteemSQL](www.steemsql.com) database using Microsoft Excel. All data processing was done in Microsoft Excel  which includes data visualization and statistics. 
+
+A full extraction of **TxTransfers** table data was done at first to observe the data and to be able  to get the specific data for this analysis. The query used in the extraction is provided below.
+
+```
+SELECT*FROM TxTransfers (NOLOCK)
+WHERE TxTransfers.timestamp >= '2018/04/01' AND	
+    TxTransfers.timestamp < '2018/05/01' AND	
+```
+<br>
+So, to get the specific counts of the deposits and withdrawals, the core query  is included with an additional ```WHERE``` condition, ```TxTransfers.transaction.type = ''```, where the type to be considered are:
+- ```transfer_to_savings```; and,
+- ```transfer_from_savings.```
+
+ In addition, the addition condition is change to ```TxTransfers.amount_symbol = ''``` in order to get the full count of recovered account.  By the way, the query is structured so that the extracted data is tabulated as a daily count of the variables considered in this analysis. The complete query is provided below.
+
+```
+SELECT                  	
+    MONTH(TxTransfers.timestamp) AS [MONTH],             	
+    DAY(TxTransfers.timestamp) AS [DAY],	
+    COUNT(TxTransfers.ID) AS Number_of_Transaction,	
+	SUM(TxTransfers.amount) AS Sum_of_Amount_Transfer,
+	AVG(TxTransfers.amount) AS Ave_of_Amount_Transfer
+FROM TxTransfers (NOLOCK)                  	
+WHERE                   	
+    YEAR(TxTransfers.timestamp) = 2018 AND               	
+    TxTransfers.timestamp >= '2018/04/01' AND                   	
+    TxTransfers.timestamp < '2018/05/01' AND 	
+    TxTransfers.type = '' AND	
+    TxTransfers.amount_symbol = ''	
+GROUP BY                    	
+    MONTH(TxTransfers.timestamp),                	
+    DAY(TxTransfers.timestamp)                   	
+
+```
+<br>
+
+#### III. . DATA PRESENTATION AND RESULT <hr>
+
+| ![](https://steemitimages.com/DQmQ2ZXGCo1zebgNamRx6GQpUoTXBKmGXEcvDoKLTCqHvU6/image.png) |
+|:---:|
+
+##### A. Account Saving's Transaction 
+
+There are 8737 transactions listed with 68% deposits and 32% withdraws. On average, 199 deposits per day is accounted against 93 withdraws per day. The number of deposit transactions show consistency having most of the counts is within the 23.58 standard deviation. This means that the deposit transaction does not have a drastic variations this month. In addition, withdraw transactions shows consistency where daily withdrawal count is changing with in the region of the 16.11 standard deviation.
+
+While counts changes shows consistency with in the standard deviation, the plot points out that the exchange rate changes directly affects user's behavior to deposit or withdraw. 
+
+By the way, there are 67% Steem dollar and 33% Steem transfers to and from savings where made from the total of 8737 transactions. Steem deposits is at 67% while withdrawals at 33% from the 2904 transactions. In addition, Steem dollar attributes 69% deposits and 31% withdraws. So, there are twice steem dollar transactions as compared to Steem.
+
+Furthermore, there are two scenarios that can be drawn from both the Steem dollar and Steem plot in relation to the changes in the exchange rate in this currencies.
+
+ - **Steem transactions** has a significant decrease in withdraws  while the STEEM/USD exchange rate is dropping. At the same time, the deposits have a slightly significant increase.
+
+- **Steem dollar transaction** shows significant increase in withdrawals while SBD/USD exchange is substantially increasing. 
+
+Thus, this pointed out scenarios proves that user's deposit and withdraw transaction count mirrors  the increase and decrease in the both Stem dollar ans Steem external market exchange rate.
+
+In terms of the deposit and withdrawal counts trends in the upcoming months, it is foreseen to have a similar data trends and stability. However, with the current exchange rate hike, slightly lesser deposits in Steem is projected in the next month as to the current 67% deposit. In addition, Steem dollars transactions will have a sustained data trends which daily count is with in the mean plus the standard deviation range.
+
+
+
+##### B. Average Amount to Transfer
+
+On average, 8.70 steem dollars per day is deposited to savings while 27.98 steem dollars per day where withdrawn.  So, there are 3.22% more steem dollars withdrawn as to deposited. On the other hand, 218.67 steem per day deposits against 1707.17 steem per day withdrawn. This suggest a 7.81% more withdraws than deposit on Steem.
+
+The increasing trend in the Steem dollar exchange rate in external market shows significant changes inn the withdrawal and deposit behavior of each user's.  There are three behavioral patterns and trends  that can be drawn from both the average Steem dollar and Steem deposit and withdrawal plot:
+
+ - User's has the tendency to withdraw more amount when there is a price spike in Steem dollars at the external market exchanges. This can be seen in the the price spike in April 3rd to 4th, and 17th to 19th  which leads to a larger withdrawal average as compared to the deposited in Steem dollars. This is also true for the Steem plot, which is also highlighted at the same timestamp, April 3rd and 4th.
+
+-  The tendency of user's to withdraw when there is a sudden drop at the external exchange rate, which is shown at the Steem plot from April 6th to 8th. However, you cannot observe this pattern at the Steem dollar plot.
+
+-  User's tend to deposit more when the exchange rate is less volatile and stable, shown at Steem plot's April 21st to 25th. 
+
+Thus, more amount is withdrawn when Steem dollar and Steem exchange rate shows a potential price hike or drop. Stable amount of withdrawals is observe when the exchange rate is less volatile. Increase in deposit amount happen when there is a sustained down in the Steem dollar ans Steem exchange rate.
+
+
+
+ 
+
+
+#### IV. CONCLUSION <hr>
+
+The following conclusion can be drawn from the analysis:
+
+- In April 2018, both the deposit and withdraw cunt shows consistency close to 70-30 percentage distribution of deposit to, and withdraw from savings. The current stats is projected to be sustained in the next month, where distribution share not lower than 60-40 in deposit and withdrawals, respectively. At the same time, the same behavioral patterns is foreseen in the upcoming months, where daily transactions count is affected by the changes in the external market exchange rate for both Steem dollars and Steem.
+
+- There are three behavior pattern in the average amount to deposit and withdraw. The tendency of user to withdraw a bigger lump of funds in Steem dollar ans Steem when there is a sudden exchange **rate hike or drop**. Another behavior is that users tend to deposit more when the exchange rate is **low and less volatile**. 
+
+- Overall, there are more deposits  tha withdrawals in terms of transaction count; but, there are more amount of either Steem dollar or Steem is withdrawn in a daily basis. 
+
+#### PROOF OF WORK <hr>
+
+[https://github.com/juecoree/sql-analysis](https://github.com/juecoree/sql-analysis)
