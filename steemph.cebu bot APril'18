@@ -1,0 +1,153 @@
+|![](https://steemitimages.com/DQmfRFDqVQYZgACrPJKyyuJQSNi846GWGBoSQFtq8KqsCui/image.png)|
+|:---:|
+
+#### I. Background of the Analysis <hr>
+
+The @steemph.cebu bot was develop to curate effectively Cebuano authors.  The bot performance analysis last time focused on the implementation of the @steemph.cebu bot v1 update. This update aims to implement the voting process at the discord server, [Teenvestors](https://discordapp.com/invite/BXmZcTX). Hence, the previous curation process was  automatically done as long as the Cebuano authors is registered in the Curation Trail at [steemauto](www.steemauto.com). 
+
+Currently, the bot has to updates. The first update was the @steemph.cebu bot v2, which was primarily subjected in the last analysis. Second, the @steemph.cebu bot v2 allows admins to have no 12 hours cool down and add an adjustable  vote weight, which can only be done by the admin.
+
+By the way, the @steemph.cebu bot has a curation trail follower which has a listing of 510 follower as of today, 2:00 PM, May 13, 2018. This was 36 more author listed against the last analysis at 464 on April 28, 2018. The currently activated authors able to access the voting of the @steemph.cebu bot is 211, as verified by the [Teenvestors'](https://discordapp.com/invite/BXmZcTX) admin. This is 31 more authors than the last analysis at 180. 
+
+In the last analysis, average vote counts per post after february 25 was sustained above the average 105 votes per day.  The  post voted by the @steemph.cebu bot has an average total payout value 0.151504 to 0.32208 at 63% probability, and 3.93 to 13.61 at 37% probability. The last analysis can be browse at [3-month bot performance report](https://steemit.com/utopian-io/@juecoree/steemph-cebu-bot-a-community-upvote-bot-performance).
+
+#### Github Repository:  [TeamMalaysia/Steemph.cebu](https://github.com/TeamMalaysia/Steemph.cebu)
+
+#### II. Outline of the Analysis <hr>
+- Assumption
+- Scopes of the Analysis
+- Data Presentation and Result
+        >  Post Count, Average Payout, Votes and Vote Weight
+- FIndings and Conclusion
+
+#### III. Assumptions <hr>
+
+Based on the former analysis result,  the following assumptions  are hypothesize as the new result in April 2018:
+
+- The average votes count is projected to be at 105 votes per day;
+- The average vote weight is projected to be with in 6 to 7% per post; 
+- the average payout value would be above the payout values 0.151504 to 0.32208 for cluster 1 and below 3.93 to 13.61 for Cluster 2; and,
+- The  average post voted is projected below 99 pots per day
+
+The assumptions stated above will be the basis for this analysis; and will be verified later on as this text wrap up.
+
+#### IV. Scopes of the Analysis <hr>
+
+The analysis performed using the data extracted from [SteemSQL](www.steemsql.com) database on 2:00 PM (UCT), May 13, 2018. The data extraction is concentrated on a specific time frame from February 22 to April 30, 2018. The time frame was considered based on the historical commits at the bot's Github repository [TeamMalaysia/Steemph.cebu] to highlight the @steemph.cebu bot updates.
+
+In addition, the query involves in this analysis is categorize based on total_payout_value as to the following payout range:
+
+- average payout less than 1;
+-  average payout between 1 to 100; and,
+- average payout greater than 100.
+
+This parameters are extracted from two tables in the steemSQL database:
+
+- Txvotes; and,
+- Comments.
+
+This was done to categorically eliminate possible outliers in the data set to be able to have clear visualization of data trends. Furthermore, vote and post counts are also included specific to the different categories and authors that has received the @steemph.cebu upvote bot. Average vote count and weight is also considered in the analysis. 
+
+Moreover, allowed voting weight by the curation trail follower were also considered in this analysis. The data were taken from the active followers as listed in the @steemph.cebu curation trail follower in [steemauto](www.steemauto.com).
+
+#### V. Tools and Query <hr>
+
+The data extracted from the [SteemSQL](www.steemsql.com) database using Microsoft Excel. All data processing was done in Microsoft Excel which includes data visualization and statistics. The core query to find all post voted by @steemph.cebu bot:
+
+```
+SELECT                  
+    MONTH(Comments.created) AS [MONTH],             
+    DAY(Comments.created) AS [DAY],                 
+    COUNT(Comments.permlink) AS [NO_OF_POST],                   
+    AVG(Comments.net_votes) AS [AVERAGE_NET_VOTES],                 
+    AVG(Comments.total_payout_value)  AS [AVERAGE_PAYOUT],
+   AVG(TxVotes.weight) AS [AVERAGE_VOTE_WEIGHT]                   
+FROM Comments (NOLOCK)                  
+INNER JOIN TxVotes (NOLOCK)                     
+        ON TxVotes.permlink = Comments.permlink AND         
+                   TxVotes.author = Comments.author                 
+WHERE                   
+    YEAR(Comments.created) = 2018 AND               
+    TxVotes.timestamp >= '2018/02/22' AND                   
+    TxVotes.timestamp < '2018/05/01' AND                    
+    TxVotes.voter = 'steemph.cebu' AND                  
+    TxVotes.author != 'steemph.cebu'                                    
+GROUP BY                    
+    MONTH(Comments.created),                
+    DAY(Comments.created)                   
+```
+
+<br>Specific data extraction according to the stated condition in the scope of this analysis where obtain by adding the following conditions to the WHERE conditions:
+
+```
+average payout less than 1 */
+    Comments.total_payout_value <  '1'
+
+/*average payout between 1 and 1000 */
+    Comments.total_payout_value >=  '1' AND 
+    Comments.total_payout_value <  '100'
+
+/*average payout less than 1 */
+    Comments.total_payout_value >=  '100'
+```
+
+#### VI. Data Presentation and Result <hr>
+
+##### VI-A Post Count 
+
+Three section were highlighted from the plot, wherein this sections are distributed accordingly as to events in the bot development and data trends.  This is done to project the data trends and to look closely into the changes happening based on the updates in the development take place.  
+
+![](https://steemitimages.com/DQmWqxv1emFCtkMn8JJrHfeaVrjNCk6cYFYNc2Zj6TsPMBT/image.png)
+
+The **area 1** at 33.82% of the full time frame shows  the first step in the transfer of @steemph.cebu bot voting to the discord server [Teenvestors](https://discordapp.com/invite/BXmZcTX). The post count at this timestamp shows a relative downtrend as it approaches to the official cut of the automatic voting  dated March 16, as announced in the discord server. The @steemph.cebu bot v1 has committed at February 22, 2018 with few users from the trail was activated to use the new feature of the bot. The 23 days period where allotted for information dissemination and activating Cebuano authors as curation trail follower at the discord server.  The downtrend was clearly observe at the tail end of the area 1 as post count drops from 146 to 33 from March 14 to 16, 2018.
+
+**Area 2** attributes to 32.36% of the full time frame shows the new development was in place and in use already. This can be observe with the early post count recorded at March 16 to 18. A surge in post count was  recorded from March 18 to 20 with a nearly doubled count at 43 from 25.  A steady increasing trend in the area 2 plot was observe as it peaks close to 62 post per day. This increasing trend in the area 2 plot could be related to more authors where activated and new curation trail follower was listed. 
+
+**Area 3** shows the current situation of the @steemph.cebu bot v1 as in place and running smoothly.  An update in the bot take place at this time frame. The @steemph.cebu bot v2 was initialize at April 9, 2018, according to the Github repository historical commit.  The bot v2 features adjustable vote weight as designated to the admin and admin enjoys the new no 12 hours cool down. However, the bot v2 development update focus on the new vote weight adjustment feature which in the last two time frames have issues with it.  So, basically the initial bot v1 12 hour cool down feature are retained and in place for all activated Cebuano authors.  
+
+<center>![](https://steemitimages.com/DQmVhXrr4awS71wYVEdH1xBA7dbE3F8zDiBs7p1vcjYc6Xf/image.png)</center>
+
+The current data trend shows an uniformly distributed post count up and down where most post count is below the April 2018 average at 84 post per day. This has a 15 counts lower than 99 post per day voted by the @steemph.cebu bot from the [previous bot performance report](https://steemit.com/utopian-io/@juecoree/steemph-cebu-bot-a-community-upvote-bot-performance). 
+
+The lower average post count per day record shows that more quality post where curated. This affirms that the 12 hour voting cool down was effective.  In addition, the current listed 211 authors only produced an average post count at 84 shows that there were less abuse in the bot was happening after the bot v1 was implemented. Therefore, the current data trends as plotted; and, can be observed in the post count plot in April '18 suggest that this will be sustained in the coming months.
+
+##### VI-B Average Payout 
+
+Eliminating possible outliers in the data at average payout greater than 100 helps us to have a clear picture of the payout trend and the possible payout value for post solely voted by @steemph.cebu bot and the trail.  There are two highlighted cluster from the three cluster taken from the full data points.  A closer look to the April '18 data as highlighted in the plot where keenly take into account--average, trend and movement. In addition, plotting the previous month averages where considered to give a a clear and  whole picture of the payout trends for post voted by @steemph.cebu bot.  The bot v1 and v2 timeline were inserted into the plot to have a benchmark and guide in the analyzing behavior and trend changes in the data.
+
+ 
+![](https://steemitimages.com/DQmViP44f2q8ReY2uYdsBYDy623t3sNPaUDEd2bPEbssohf/image.png)
+
+
+As stated earlier, there are three clusters made with post count of 4259, 2524, and 15 for cluster 1, 2 and 3 respectively. **Cluster 1** attributes to 62.72% of all total post voted by @steemph.cebu bot. The average payout value for this cluster equal to 0.2689 at a standard deviation of 0.09972. The average payout range is between 0.1692 and 0.3686 which is above the previous month average payout value at  0.151504 to 0.32208. This increase could be attributed to the better adjustment in the voting weight of @steemph.cebu bot and the trail follower whom voting weight mirrors that of the bot.  Looking at the plot, the data trends point out a good effect of the [bot v2](https://github.com/TeamMalaysia/Steemph.cebu/commit/4fc6e6953b9a6f2cf04675666a37f310a835d3bd) update as we can see an upward trends in the average total payout value.
+
+**Cluster 2** shares 37.16% of all total post voted by @steemph.cebu bot. This cluster has an average total payout value equal to 5.28 with standard deviation of 1.85.  The average total payout range is accounted at 3.42 to 7.13, which was lower as compared to the previous month. In terms of the data trends in cluster 2, the plot suggest a possible down trend in the average total payout value but will be above 1 but less than 3 minimum as for the coming months. The current chance of occurrence for cluster 2 has slightly increase as compared in the previous month. This suggest that total payout value will  have a higher chance at cluster 2 in the near future but not immediate.  On the other hand, **Cluster 3** registered 8 post count and have not relevant or significant data trends.
+
+The average payout value for post voted by the @steemph.cebu bot will likely have the current averages at cluster 1, which is between 0.1692 and 0.3686. This has 62.7% chance of occurrence as compared to 37.16% of cluster 2. The current and previous data trends for cluster 1 suggest continuous increasing trends. So, we can draw that cluster 2 values is achievable to have a high occurrence as compared to cluster 1. However, cluster 2 is projected to be less than the current average total payout value threshold, with projection above 1 but less than 3 minimum.
+
+In terms of the effectivity of the [bot v2](https://github.com/TeamMalaysia/Steemph.cebu/commit/4fc6e6953b9a6f2cf04675666a37f310a835d3bd) update, the fixing of vote weight and introduction of the adjustable vote weight for the bot results to a significant increase in the average payout value in cluster one and increase in the chance of occurrence of cluster 2. Thus, the development has a significant impact on the bot behavior resulting to significant increase in average payout and cluster occurrence probability.
+
+##### VI-C Votes and Vote weight
+
+The average vote weight cast by @steemph.cebu bot is 8.87% on top of the 52% allowed average vote weight by users for the trail.  After the implementation of @steemph.cebu bot v1 was in placed, a vote weight bug occured highlighted by the vote weight spike at the Area 2 time frame.  To correct this bug, @steemph.cebu [bot v2](https://github.com/TeamMalaysia/Steemph.cebu/commit/4fc6e6953b9a6f2cf04675666a37f310a835d3bd) was deployed, turning tables around this time. A stable and less volatile vote weight was observed, which was needed to be correct due to the fact that it might consume the voting power of the trail followers.
+
+![](https://steemitimages.com/DQmVpKjLGXGw4mKbrzHPJiXqPCkomNvxPQeFFLTZSr2xoLT/image.png)
+
+On average, post voted by @steemph.cebu bot received 125 votes per post per day. This is above the previous average at 105 votes. The vote weight from the  [bot v2](https://github.com/TeamMalaysia/Steemph.cebu/commit/4fc6e6953b9a6f2cf04675666a37f310a835d3bd) update at April 9, 2018 result to a steadier values with only two levels of fluctuations can be accounted for, 10% and 11%. So, the bot implementation of the fix to the vote weight error was effective and is supported by the data points in the plot. Overall, the vote count per post has an increasing trend from the bot v1 release up to the bot v2 update, then it was steadier and sustained. 
+
+A lesser increase in vote count is projected in the next month as vote count increase has a dependency on the amount of gain in the curation trail follower for the @steemph.cebu bot, with currently listed followers at 510 authors with 211 authors as activated for vote from the bot. Activated trail follower only attributes 41.37% of the 510 trail follower.On the other hand, the steadier vote weight is projected to be sustained as long as there will be no another bug would occur in the bot's programming.  The vote weight increase and decrease will now be solely dependent on the admin's vote weight settings. There are no projections of increase for vote weight.
+
+#### VII Findings and Conclusion<hr>
+
+Earlier, there are projection and assumption stated which are the primary aims to be address in this analysis. Here are the findings based on the assumption stated:
+
+-  A higher vote count was observed, which was 125 votes per post per day against 105 vote. This shows grow in the curation trail follower for the @steemph.cebu bot, and suggest growth in numbers of the Cebu community author.
+
+- The projected vote weight at 6-7% was close to 2% low with the current 8.87% average vote weight. This shows a proof of  the effectivity of  [bot v2](https://github.com/TeamMalaysia/Steemph.cebu/commit/4fc6e6953b9a6f2cf04675666a37f310a835d3bd) development.
+
+- The average payout value for post voted by the @steemph.cebu bot will likely have the current averages at cluster 1, which is between 0.1692 and 0.3686 with 62.7% chance of occurrence as compared to 37.16% of cluster 2. Cluster 1 data trends shows continues increase which, with high hopes,  cluster 2 high chance of occurrence is projected but not immediate, with average payout range with in above 1 but less than 3.
+
+- The average post count is accounted for 84 post per day, which was 15 counts low from the previous report. This shows that there more quality content curated by the bot; and, the bot's 12-hour cool down is still effective. 
+
+Based on the findings, the bot's 12 hour voting cool down was still effective to lessen abuse and curate quality post . In addition, the [bot v2](https://github.com/TeamMalaysia/Steemph.cebu/commit/4fc6e6953b9a6f2cf04675666a37f310a835d3bd) update which solves the vote weight error has a positive effect on the payout values and vote weight. Thus, the @steemph.cebu bot development update was effective to address the vote weight bug at the same time retain the 12 hour cool down which result to a lesser abuse in the bot and trail voting.
+ <hr>
