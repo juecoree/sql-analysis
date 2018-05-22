@@ -1,0 +1,80 @@
+### Details
+There are many things can be done with the steem dollar rewards. Users can internally trade steem dollars with available services such as voting bots and promotional services. In addition, the rewards can also be sold in exchange with another cryptocurrency. 
+
+In steemit, selling and buying of steem dollar is available through the @blocktrades exchange services.  Its services can be accessed using the transfer, sell and buy functionality in each account's wallet. There are a quite number of cryptocurrencies to be in exchange with your steem dollar rewards at @blocktrades, such as bitcoin and ethereum.
+
+Buy and sell transaction with @blocktrades is a unique feature in steemit. This unique transactions can be used to analyze the flow of steem dollar funds coming and going to external wallets. This could be a unique way to see the investment coming in; and the rewards going out the in each account's wallet. 
+
+So, in this analysis, I would look into the steem dollar transfer to external wallet via @blocktrades exchange services. Plot the data to see trends and assess behavioral patterns that would support the current investment and reward flow to external market.
+
+### Github Repository: [steemit/steem](www.github.com/steemit/steem)
+
+### Scope of the Analysis
+The data used in this analysis where extracted from [SteemSQL](www.steemsql.com) from 7 PM (UCT), 5/20/2018. The data were imported from the TxTransfer table on [SteemSQL](www.steemsql.com) database . 
+
+The analysis covers all data that are in conformance with the set of WHERE conditions in core query. These are the translated condition which was put into as an SQL query code :
+- The data are between January 1, 2017 and April 30, 2018. 
+- Only transfer to @blocktrades transactions, with a verified 36 character memo, was accounted for. 
+- Memos that contains 0 characters are considered transfer from @blocktrades transactions. 
+- All accounted transfers should involve steem dollar currency only.
+
+The data was processed to produce charts to analyze the trends from the taken average amount value being transferred via @blocktrades, either buying or selling steem dollars. 
+
+In terms of assessing the accounts buy and sell behavior to the external exchanges, an additional data was taken from the historical values in  [coinmarketcap](www.coinmarketcap.com) between January 1, 2017 and April 30, 2018. It is used to see the co-relation between user's behavior as to the steem dollar price changes. By the way, the steem dollar price data were an average of the daily high and low value.
+
+### Limitation
+The analysis does not covers the other cryptocurrency amount received by external wallet, or the exact other cryptocurrency amount equivalent to the purchased steem dollar. In addition, the query only concentrated on the buy and sell transactions to @blocktrades with a uniquely identified valid memo.
+
+ ### Assumptions
+**Buy and Sell Behavior**. It is believe that the external market transfer using @blocktrades as medium will show a good indication on the current trade and investment flows in each accounts. As usual market behavior, buy and sell transactions are expected to have a larger amount to sell at low market exchange; and, smaller amount at a high market exchange. In addition, It is assumed that there is a down trend in the buy and sell transactions as market price drop after a strong market price in December 2017. 
+
+**Investment Flow**. A relevant conclusion that we could get from this analysis is a clear and a cut through picture in the investment flow of steem dollars into each accounts wallet as compared to the amount going to external wallets.  I am expecting a good  result that will show larger investment coming in than going out on steemit wallets. It is because it could affirms community acceptance and trust over the platform. bring a , this is a good indicator that the community has a trust in the platform
+
+
+### Data Presentation and Result
+A total of 124,643 sell and 19,662 buy transactions with @blocktrades was recorded. On average, there are 7,790 buy and 1,229 sell per month was accounted. An average of 32.74  and 47.73 steem dollars was calculated from the average amount sold and bought, respectively. 
+
+A significant drop in the average amount involve was observed from the plot. The assumptions made earlier was verified true and correct. Hence, we can spot a significant downtrend from of amount involve in sell and buy transaction to @blocktrades. In terms of the buy and sell behavior, low market exchange to US dollar in external exchanges simulate users to sell larger amount of steem dollar as compared to higher market rate. This is a good affirmation that the buy and sell behavior of users are usual and normal.  
+
+![image.png](https://ipfs.busy.org/ipfs/QmZor19J435FtanPaXZaG3ytLMJrX313it5kQ147grzova)
+
+**Sell with @blocktrades**. A significant  drop in monthly average amount to sell was observed between August and December 2017.  A more steadier averages can be take into account from January until today. Initially, users's selling behaviors with @blocktrades was largerly affected by the volatility in the steem dollar to US dollar exchange. However, in the latter part, there was a change in the selling behavior. Steadier and less volatility averages was noted. This was a good sign that users has a better understanding of the steem dollar market.  Overall, the average in 2018 was a bit lower as compared to the previous year. Thus, there are less steem dollars where going to external wallets. This means that there are more steem dollars were available in steemit.
+
+![image.png](https://ipfs.busy.org/ipfs/QmTpuP8yHNhVHpk9kh3UGBfAd22T33wXJvCf5EVueeTSqe)
+
+**Buy with @blocktrades**.  Similarly, larger amount were involved when there is a low market rate against steem dollar.  Account capitalization with steem dollar is evident during this period. However, a down trend was observed in the buy plot too. This indicates that capitalization have trimmed down from the massive buy in July and August last year. In addition, the sudden peak in the market exchange rate on last December has gained a significant and momentary increase in steem dollars coming into different account wallets. Overall, there is a good investment amount from last year between May to October. Overall, the investment coming in to steemit wallets are favorably good. There are quite number of months where the average is above 40 steem dollars/month.
+
+![image.png](https://ipfs.busy.org/ipfs/QmYSz2v5EB6C4ZrdF5X7JWLzHD7bHeN5mNjKVA64Vv63oe)
+
+**Is the there more investment than cash-outs?** Undeniably, there are more investment than cash-out.  Investment coming in were higher as compared to amounts going to external wallets. On average, roughly 47.78 steem dollar per month were invested on steemit. This is 10 steem dollar higher as compared to cash-outs. So, this affirms our earlier assumption. It indicates that the community has accepted and believe in the platform by investing on it through steem dollars.
+
+### Conclusion
+Buy and Sell functions in steemit is a unique way to exchange your steem dollar rewards with @blocktrades. Above this, the transactions made by each users with blocktrades was found to be helpful in understanding the funds coming and leaving the user's wallet. Prior with the data presentation and result, i made assumption trends, beahvior, and investment flows to be verified. Here are some conclusion that was drawn from the analysis:
+- Account's buy and sell behavior was greatly affected by the market exchange rate in terms of the amount of steem dollars to sell and buy. Over the time, users behavior has change that results to a stedier amount used in the transaction against the external market volatility. This has shown users growth in steemit as projected to their better understanding on market exchange rates.
+- Steadier and less fluctuating averages can be accounted in the buy and sell transactions with @blocktrades. This has happened after a surge in the 4th quarter of the last year. In comparison, the selling amount was lower as compared to the buying amount in general. This means that there are more steem dollar purchased from an external wallet.
+- Capital investment in steemit is evident with a higher number in steem dollar coming in different account wallets. This was affirmed by the 47.78 steem dollar average monthly  investment as compared to 32.74 steem dollar monthly cash-outs. This shows the community acceptance and believe on the platform, as shown on capital investment coming in.
+
+### Tool and Query
+
+The data was extracted from [SteemSQL](www.steemsql.com) using Microsoft Excel. All data processing was done in Microsoft Excel, including visualization and plotting. The core query to find all buy and sell transfer with @blocktrades:
+
+```
+SELECT 
+   MONTH(TxTransfers.timestamp) AS [Month],
+   COUNT(TxTransfers.[to]) AS [Transactions],
+   AVG(TxTransfers.amount) AS [Average_Steem_Dollar_Transfer]
+FROM TxTransfers(NOLOCK)
+WHERE 
+   YEAR(TxTransfers.timestamp) = %year AND
+   LEN(TxTransfers.memo) = '%memo_lenght' AND
+   TxTransfers.[from] = 'blocktrades' AND
+   TxTransfers.amount_symbol = 'SBD' AND
+   TxTransfers.timestamp >= '2017/01/01' AND
+   TxTransfers.timestamp < '2018/05/01'
+GROUP BY
+   MONTH(TxTransfers.timestamp)
+```
+
+Change %memo_lenght from the core query with the valid character length of a transfer memo. In this analysis, a valid sell transfer with @blocktrades should have a 36 character memo. On the other hand, buy transfer have no memo attached. In terms of the date, alter %year to the specific year involve in your query. For this query, simultaneously take the values for 2017 and 2018.
+
+### Proof of Work: [juecoree/sql-analysis](https://github.com/juecoree/sql-analysis)
