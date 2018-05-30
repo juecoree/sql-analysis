@@ -1,0 +1,137 @@
+![image.png](https://ipfs.busy.org/ipfs/Qmck3CAPYbGSfCFvVk8kaf3PxMzgi5JzDkYJsQzdLYRATR)
+
+
+### I.  Details <hr>
+
+[Steemhunt](https://steemhunt.com/) is a steem platform fueled product hunt. It promises contributors of rewards for finding and hunting good, quality, and unique product. To be able to contribute, users must dig in to the market of unheralded but great product. A user can share and contribute by writing a review of the product on [steemhunt](https://steemhunt.com/).
+
+A designated moderator will review this contribution and write a comment on it. It is much similar to contribution moderation in [utopian](https://join.utopian.io/). Contributions are voted by @steemhunt when it  is verified and approve by a moderator.  
+
+Right now, there are overwhelming numbers of contribution on steemhunt. I was curious on how it pars on another apps in steem blockcahin. So, I want to evaluate the trends between approve and rejected contributions on steeemhunt to assess for any abuses that was overlooked by the moderators on the platform.
+
+The data involve in this analysis are from March 1 to May 20, 2018.  This was taken into account based on the commits made on its [Github repository](https://github.com/Steemhunt/web). This analysis includes the daily post count, and payout averages for each contributions. In addition, it also considered the average vote weight for each approve contributions.
+
+As I go deeper with this analysis, I want to address the following  questions:
+- Is there any abused overlooked by moderators?
+- how much, on average, is the payout generated from each contribution?<br>
+
+To answer this questions, the data are plotted and visualize to see trends. Basic statistical measures are included to show data averages. It is used to provided factual and quantitative evidence to support results and claims.
+
+#### Github Repository: [steemhunt/web](https://github.com/Steemhunt/web)
+
+### II. Scope of Analysis<hr>
+
+The data used in this analysis where extracted from [SteemSQL](www.steemsql.com) from 3 PM (UCT), 5/28/2018. The data involve where between March 1 and May 20, 2018. This was considered in relation to the historical commits on [steemhunt's Github repository](https://github.com/Steemhunt/web). The query was extracted from the **Comments** and **TxVotes** table in the [SteemSQL](www.steemsql.com).
+
+Two set of query were involved in this analysis. One query is designated to extract all contributions that were approved. Only contributions which was voted by @steemhunt was considered as approved. So, contributions that are rejected are those that has not been voted by @steemhunt.
+
+The post count, payout averages, and vote weight was considered to be the primary parameters and basis for the claims on the presence and traces of abuse on [Steemhunt](https://steemhunt.com/). Statistical measures and data plot were performed to support the result and claims on the latter part of this text. 
+
+###  III. Tools and Query<hr>
+
+The data was imported from the [SteemSQL](www.steemsql.com) database to Microsoft Excel. Initial transformation of the data was done in the initial query. This is where post count, average payout and vote weight was tabulated on a daily basis. Additional data processing such as statistical measures and visualization was done in Microsoft Excel.
+
+The core query used in the data extraction has a specific WHERE clause: **Comments.beneficiaries LIKE '%steemhunt%'**, that targets post that was done on [steemhunt.com](www.steemhunt.com). The full query is provided below:
+```
+SELECT                  
+    MONTH(Comments.created) AS [MONTH],             
+    DAY(Comments.created) AS [DAY],                 
+    COUNT(Comments.permlink) AS [NO_OF_POST],                   
+    AVG(Comments.net_votes) AS [AVERAGE_NET_VOTES],
+    AVG(TxVotes.weight) AS [AVERAGE_WEIGHT_NET_VOTES],
+    AVG(Comments.total_payout_value)  AS [AVERAGE_PAYOUT]                   
+FROM Comments (NOLOCK)                  
+INNER JOIN TxVotes (NOLOCK)                     
+        ON TxVotes.permlink = Comments.permlink AND         
+           TxVotes.author = Comments.author                 
+WHERE                   
+    YEAR(Comments.created) = 2018 AND
+    MONTH(Comments.created) = %month AND                   
+    TxVotes.voter = 'steemhunt' AND                  
+    TxVotes.author != 'steemhunt' AND
+    Comments.beneficiaries LIKE '%steemhunt%'
+GROUP BY                    
+    MONTH(Comments.created),                
+    DAY(Comments.created)
+```
+
+To complete the query, set **%month** to the month were you wan to specifically pull the data. Another set of query is used to extract the rejected contributions. The second query as follow:
+
+```
+SELECT                  
+    MONTH(Comments.created) AS [MONTH],             
+    DAY(Comments.created) AS [DAY],                 
+    COUNT(Comments.permlink) AS [NO_OF_POST],                   
+    AVG(Comments.net_votes) AS [AVERAGE_NET_VOTES],
+    AVG(TxVotes.weight) AS [AVERAGE_WEIGHT_NET_VOTES],
+    AVG(Comments.total_payout_value)  AS [AVERAGE_PAYOUT]                   
+FROM Comments (NOLOCK)                  
+INNER JOIN TxVotes (NOLOCK)                     
+        ON TxVotes.permlink = Comments.permlink AND         
+           TxVotes.author = Comments.author                 
+WHERE                   
+    YEAR(Comments.created) = 2018 AND
+    MONTH(Comments.created) = %month AND                   
+    TxVotes.voter != 'steemhunt' AND                  
+    TxVotes.author != 'steemhunt' AND
+    Comments.beneficiaries LIKE '%steemhunt%'
+GROUP BY                    
+    MONTH(Comments.created),                
+    DAY(Comments.created)
+```
+<br>
+
+### IV. Data Presentation and Result <hr>
+
+#### A. Approved or Rejected 
+A total of 21,633 contributions were recorded. Rejected contributions shares 94% of 21,633 contributions. On average, 251 contributions per day were rejected of either repeated contribution or plagiarism content. The odds against rejection is very low. It is more likely that hunters are rejected than approved.
+
+In addition, only 6% of the 21,633 contributions were approved, roughly 1,281 contributions. On a daily count, there are about 16 contributions approved out of 267 contributions. Chance of approval is very slim. This shows that there is a thorough review on contributions. It is a significant evidence of strict and good quality moderation in [steemhunt](@steemhunt).
+
+| ![image.png](https://ipfs.busy.org/ipfs/QmeH1HrBtTihz7gRkkEe7SLhn7TgyEcBmC6H22z9RnZNGN) |
+|:---:|
+<br>
+ In general, there is a clear sign of growth in [steemhunt](@steemhunt). From March 7 to May 20, the contribution was almost doubled. It was listed from254 contributions in March 7 to 427 contribution up to May 20. Significant low contribution counts can be noted from the plot. This down counts are not due to unwillingness or withdrawn support to the platform. It is primarily attributed to some changes and updates in the app.  For example, the down in the contribution count in April was due to implementation of bug fixes to the platform. 
+
+Overall, an increasing trends is projected by the approved contributions. This was sustained from April 16 to May 20. So, we can foresee that the current trends can be sustained or elated in the coming months. However, both rejected and approved were heading in the same way. The odds against rejection is still projected to be within 6%.  This is about 1 for every 17 contributions. 
+
+#### Is there any abused overlooked by moderators?
+Frankly, at this low chances of approval, there was no abuse. The disparity between post rejected and approved shows some traces of potential abuse to loot the rewards in [steemhunt](@steemhunt). However, this was unsuccessful. The strict implementation of rules and good set of moderators make it possible. 
+
+The current number of approved contributions where beyond a healthy scenario. It was excellent. Moderators was able to perform a good job in reviewing and rejecting contributions.  Plagiarism content and product repetitions were finely filtered so that only quality contribution can be voted by @steemhunt.
+
+#### B. Rewards
+
+[Steemhunt](@steemhunt) popularize product hunting by giving SBD rewards. As promised, rewards are given to qualified and approved contribution (hunt).  A vote from @steemhunt is assured for approved contribution. The vote weight varies accordingly to the rank of the product endorsed. 
+
+Earlier, there was a positive impression that a current movement of data pints out to more contributions coming in. So, it was a bit intriguing on why more and more people banking on product hunting. Is it rewarding? 
+
+Digging deeper, on average, [steemhunt's](@steemhunt) reward is amounting to 2.22 (total payout) in value. This is in accordance with an average vote weight at 6.23%.  A standard deviation of 1.28 was measured. No, the average payout value per approve contribution is between 0.95 to 3.5. 
+
+ If we take into consideration the current 100% vote value of @steemhunt, the average reward would be around 2.7 per approved contribution. An average payout values listed between 1.1 to 2.2 occurs 37.50%. This is followed by payout values between 2.2. to 3.3 at 30.57%.
+
+![image.png](https://ipfs.busy.org/ipfs/QmVTwZiCJQaH1sdkkHu4F7UT4pCXWzDwHJZSCtj5SCTYSx)
+
+
+From the plot, the measured payout values **between 0.95 and 3.5** is highly probable. This is in accordance with the frequency of occurrence for the payout range between 1.1. and 3.3. This has an accumulated odds to occur at 68.07%.
+
+So, we can trimmed down the average payout value range the upper limit to 2.7. This is to take into account the value of the average vote weight of @steemhunt.  Thus, the projected average payout range is **between 1.1 and 2.7**. The lower limit is based on the lower point in the most occurring payout values. 
+
+#### How much, on average, is the payout generated from each contribution?
+As calculated, the average payout is between 0.95 and 3.5. This is highly probable to occur as it fits within the payout range **between 1.1 to 3.3**, with odds to occur at 68.07. However, this was trimmed down to a much shorter range. 
+
+The value of the average vote weight was considered as the upper limit. In addition,  the lower limit was set at 1.1, considering its frequency of occurrence with in the 72 days time stamp. So, the projected average payout (reward) value is between **between 1.1 and 2.7**.
+
+### V. Conclusion<hr>
+
+[Steemhunt](https://steemhunt.com/) has revolutionize product hunting using the steem blockchain. Growth is very evident as more contributions and products was discovered. In the light of this events, I have look into the numbers of approve and rejected contribution. I was digging deeper to find traces and abuses that has been overlooked by moderators. 
+
+After analyzing the data, it was found out that only 6% were approved. A large disparity between approved and rejected contributions. The number of rejections suggest that there were people trying to abuse the rewards. It is by submitting very large number of contributions which are either plagiarism or a repetition. In fact, the odds of approval tell us that here is a significant cues that **abuse were not tolerated**.
+
+In addition, it was found out that the average payout value of each approved contribution were **between 0.95 and 3.5**. However, from the plot, it was trimmed down to a more probable value by considering average vote weight and payout value occurrence over the 72 days timestamp. So, the projected average payout value is **between 1.1 and 2.7**. 
+
+Furthermore, [Steemhunt](https://steemhunt.com/) has incurred a possible increase in the number of contributions. This would also result to a better and favorable distribution of rejected and approved contributions.  However, the increase of approved contributions is not immediate. As projected, it would not reach above 10% in the next month. 
+
+Overall, [Steemhunt](https://steemhunt.com/) was performing very well. There were no tolerated abuses. Payout values were reasonable. It is expected to have a average reward between  1.1 and 2.7 per approved contribution, at 6.23% vote weight. 
+
+#### Proof of Work: https://github.com/juecoree/sql-analysis
