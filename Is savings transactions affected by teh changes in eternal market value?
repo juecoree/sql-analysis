@@ -1,0 +1,113 @@
+<center>![image.png](https://ipfs.busy.org/ipfs/Qmdobx6ofs8dsbbcLLXrt3pvg1ZVveUohLKqmHAvWztWSm)
+<sub>Image taken from [pixabay](https://pixabay.com/en/coins-calculator-budget-1015125/) which is under [CC0 Creative Commons](https://pixabay.com/en/service/terms/#usage)</sub></center>
+
+### Details <hr>
+Pondering on user's savings activities, I would like to validate the correlation between saving's deposit and withdrawal to the external market value of either steem or steem dollar.  A correlation study was conducted using the [Pearson Product-Moment Correlation](https://statistics.laerd.com/statistical-guides/pearson-correlation-coefficient-statistical-guide.php). 
+
+[Pearson Product-Moment Correlation](https://statistics.laerd.com/statistical-guides/pearson-correlation-coefficient-statistical-guide.php) is to measure the strength of linear association between the amount involve in savings transactions, and the external market value of either steem and steem dollar. 
+
+In the analysis, the linear association between saving's amount transaction and external market value is interpreted using the  the Pearson correlation coefficient.  Interpretation of the Coefficient of Correlation ( +/-) should be in accordance to the table provided.
+
+
+|Interpretation of Coefficient of Correlation (+/-)|
+|:---:|
+| 1.0 (perfect correlation)|
+| 0.80 to 0.99 (high correlation)|
+| 0.50 to 0.79 (moderate correlation)|
+| 0.31 to 0.49 (slightly low correlation)|
+| 0.30 to below (low correlation)|
+<br>Take note that the value of the correlation coefficient is between 1 to -1. The positive and negative value of the correlation coefficient suggest the relationship between  amount involve in the savings transaction and the external market value of either steem and steem dollar.
+
+In addition, the amount involve in the analysis for savings activities are averages from the daily transactions made between January 1 to May 31, 2018. For the external market value, the daily closing value from the [coinmarketcap](https://coinmarketcap.com/) for both steem and steem dollar.
+
+### Github Repository: [steemit/steem](https://github.com/steemit/steem)
+
+### Scope of Analysis<hr>
+The analysis was performed using the data imported from [SteemSQL](steemsql.com) database to Microsoft Excel on 10:00 am (UTC), June 5, 2018.  
+
+All data are from the daily average amount in steem and steem dollar involve in the savings transactions. This data was taken from **TxTransfers** table for **transfer_to_savings** and **transfer_from_savings**. In addition, the daily closing values for steem and steem dollar was extracted from the historical data at [coinmarketcap](https://coinmarketcap.com/).
+
+After all data were extracted, the correlation was measured using [Pearson Product-Moment Correlation](https://statistics.laerd.com/statistical-guides/pearson-correlation-coefficient-statistical-guide.php). The correlation coefficient derived from the computation is used to interpret the relationship between savings activities and external market values for steem and steem dollar.
+
+### Data Presentation and Result <hr>
+
+#### Steem Dollar Transactions in Savings
+An average of **11.82 steem dollar** were deposited to savings between January 1 to May 31, 2018. On the other hand, **24.99 steem dollar** were withdrawn from savings in the same period. Within this period, the average external market value of steem dollar is **3.81 US dollar**.
+
+![image.png](https://ipfs.busy.org/ipfs/QmVqDyUYzbCxBBCUhSGzmeaNP2h2W1QQcrM5zBUoEd8iew)
+
+Within the time frame, Steem dollar value on external market as compared to US dollar is decreasing. However, the behavioral pattern on savings activities does not certainly suggest a relatively direct relationship to the changes in the Steem dollar value on external market.
+
+<div class="pull-left">https://ipfs.busy.org/ipfs/QmRzbwPLWNeoNH7fTZxPfcWvAa8crtYkjrkRWUopu9mhdd</div> There were times that a decreasing Steem dollar value triggers more withdrawn amount in Steem dollar. This was highlighted on January 29's average withdrawal. In contrast, a decreasing Steem dollar value triggers lesser withdrawn amount. This was highlighted on February 4's average withdrawal.
+
+<br><br>
+Due to the stated conditions, a directly interpretation and conclusion based from the plot could not show the relationship between Steem dollar transaction and its value on external market over the specified time frame. Thus, a measure of linear correlation between two variables is necessary. 
+<br><br>
+
+<div class="pull-right">https://ipfs.busy.org/ipfs/Qma4HV86rTKPc42ucvbgrW6Jk1W856wJAb9n74B6XMWLFc <br> https://ipfs.busy.org/ipfs/QmeAtYwwrCFQZLucAX1AviqUco7mfqeYVTKv3aJzS7Mz6w <br>https://ipfs.busy.org/ipfs/QmWR2GUZHq6KjCqXrdrkczqDXU4T3AgTC9QD1GtYR33rJi </div>  <br>Using the Pearson Product-Moment Correlation formula, a correlation coefficient of -0.49  and -0.035 for deposit and withdrawal, respectively. 
+<br><br>
+A <bold>-0.49 correlation coefficient</bold> suggest that there is a moderate correlation between the average amount deposited to the external market value of Steem dollar to US dollar. It confirms that the behavior of users to deposit more amount on savings is moderately affected by the changes in the external market value of Steem dollar. Hence the correlation coefficient is negative, more amount on deposit  is projected as the Steem dollar value on external market is decreasing.
+<br><br>
+While for withdrawals, a  <bold> -0.035 correlation coefficient</bold> tells that there is a low to no correlations between withdrawn amount as to the Steem dollar valuie on external market. So, user's withdrawal behavior is not directly affected by the changes in the external market value of Steem dollar to Us dollar. 
+<br><br>
+Thus, only deposit amount are affected by the changes in the external market value of Steem dollar. By which, as stated earlier, more amount deposited at a low value of Steem dollar to US dollar in the external market.<br><br>
+
+#### Steem Transactions in Savings
+
+An average of **1481.40 steem** were deposited to savings between January 1 to May 31, 2018. On the other hand, **755.51 steem dollar** were withdrawn from savings in the same period. Within this period, the average external market value of steem dollar is **3.58 US dollar**. As compared to the amount involve in Steem dollar transactions, Steem trasaction involve more amount of  either deposit or withdrawal activities.
+
+![image.png](https://ipfs.busy.org/ipfs/QmPuQmrYFQR9zHLAkcvdp7E8XpYj5GpBSk1BfzrfkXuzhW)
+
+Steem value on external market is relatively stagnant. Thee are no noticeable sustain drop after the drop from January. Observing the plot, a direct interpretation between the relationship of Steem amount involve in savings transactions and Steem value on external market. It can be observed that user's response to changes in the Steem value is quite at extremes conditions. <br>
+
+<div class="pull-right">https://ipfs.busy.org/ipfs/QmSh5Didj3gM1RogZhAGBoS9AyAH49sdxB3qnpV8gwQ6Hx</div> <br>There are times that more withdrawals happen when the external market value of Steem is relatively low. This can be track in the March 31 and April 1. At the same time, there were times that more withdrawals at a high market value of Steem, as highlighted at April 4.
+<br><br>
+<div class="pull-left">https://ipfs.busy.org/ipfs/QmT9uq8Bb5WeJc9thhxmUE71wYzbQaeCRXqHnMkvyNEd2e<br>https://ipfs.busy.org/ipfs/QmQeCfLqyDqoWZFRkBqTofrKm8jz5BbSsyT17VTbA9hmtg<br>https://ipfs.busy.org/ipfs/QmQYKFWBfQv1k79ZU7jWMEonEGJXM8MqhgHj5eataZCoSF</div> <br>A correlation coefficient of 0.11  and -0.002 for deposit and withdrawal, respectively. 
+<br><br>
+A 0.11 correlation coefficient suggest a low correlation between Steem amount deposited and the it external market value. So, it is affirmed that the average amount of Steem deposit is not affected by the changes from the external market value of Steem to US dollar. In addition, user's does not primarily base their decision to deposit large or small amount of Steem in savings to the changes in the external market. Thus, the deposit amount is solely independent from the changes and volatility of the Steem value in the external market.
+<br><br>
+At the same time, - 0.002 coefficient of correlation also tells us that there were no correlation between the average amount withdrawn and Steem value in external market. So, user's amount withdrawn from savings are not motivated or triggered by a high or low Steem value in the external market. Withdrawals activities including the amount involve are not directly affected by the external market value of Steem.
+<br><br>
+Thus, Steem transaction in savings was not motivated or triggered by the Steem value in external market.<br>
+
+### Conclusion <hr>
+Over the time frame, there are more Steem amount involve as to Steem dollar. As I dig deeper, steem and steem dollar transactions on savings can not be interpreted direcly using the plot, hence there were observe contradicting behavioral patterns. So, a correlation was conducted to affirm or deny the relationship between the amount involve in the transaction and its value of external market. Thus, the following conclusions was obtained:
+
+- Steem dollar deposit amount in savings transaction is moderately affected by the changes in the Steem dollar value on external market. By which, it was found out that more amount in steem dollar are deposited when Steem dollar value at external market is low. In contrast, withdrawn amount were not direly affected by the changes in the Steem dollar value on external market.
+
+- In terms of Steem transactions, average Steem amount involve in either deposit or withdrawal is not affected by the changes in the Steem value on external market. Amounts transacted on savings are not triggered or motivated by the value of Steem on the external market. Thus, we can draw a sole independence of Steem transaction from the volatility and changes in Steem value on external market.
+
+### Tools and Query<hr>
+
+All data are imported to Microsoft Excel from from [SteemSQL](steemsql.com) database for a time frame between January 1  and May 31, 2018.  The core query used to extract the average amount of steem and steem dollar used in the savings transactions. The full query code is shown below.
+
+<code>
+SELECT
+ TxTransfers.amount_symbol,
+ MONTH(TxTransfers.timestamp) AS [Month],
+ DAY(TxTransfers.timestamp) AS [Day],
+ AVG(TxTransfers.amount) AS [Average]
+FROM TxTransfers(NOLOCK)
+WHERE
+ YEAR(TxTransfers.timestamp) = 2018 AND
+ TxTransfers.timestamp >= '2018/01/01' AND
+ TxTransfers.timestamp < '2018/06/01' AND
+ TxTransfers.type = 'transfer_to_savings'
+GROUP BY
+ TxTransfers.amount_symbol,
+ MONTH(TxTransfers.timestamp),
+ DAY(TxTransfers.timestamp)
+</code>
+
+After extracting the data,  steem and steem dollar transactions were separated. This is to present and affirm the relationship of steem and steem dollar to the changes in its external market value. 
+
+A correlation was done using the [Pearson Product-Moment Correlation](https://statistics.laerd.com/statistical-guides/pearson-correlation-coefficient-statistical-guide.php). Interpretation of the correlation coefficient was based on the table stated earlier.
+
+The Pearson Product-Moment Correlation coefficient formula used is :
+
+<center>![image.png](https://ipfs.busy.org/ipfs/QmULY3HGtbqirYvtTyJuhaAAnoimAopeqVnRtxhehq8p72)</center>
+
+The x and y values in the formula represents Deposit/Withdrawal and External Market value, respectively. In addition, N is equal to 151. This was the full count of the days between January 1 to May 31, 2018. All computation were performed in Microsoft Excel.
+
+By the way, the external market value for both currency where taken at the close column in the historical data from [coinmarketcap.com](https://busy.org/exit?url=https%3A%2F%2Fcoinmarketcap.com%2F).
+
