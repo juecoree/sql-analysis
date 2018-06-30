@@ -11,17 +11,27 @@ Over the time, a significant growth of the @steemph.cebu bot was observe which w
 
 True to its mission, the @steemph.cebu still support Cebuano authors who have not reach 35 SP at the time of implementation. This were designated as minnow trail follower in the community discord server. This members will receive a 5% vote from the bot so that this newbies of the community will stay and grow in Steemit.
 
+#### 1.1 Objective
+
+At the end of the analysis, we should be able to:
+-  investigate the current SP delegation  received by @steemph.cebu; and,
+-  evaluate the impact of the new delegation system in terms of the number of community members delegating SP and post voted by the bot.
+
 #### 2. Github Repository: [TeamMalaysia/Steemph.cebu](https://github.com/TeamMalaysia/Steemph.cebu/)
 
-### 3. Scopes of the Analysis <hr>
+### 3. Scopes and Limitation of the Analysis <hr>
 
-The analysis was performed using the data from [SteemSQL](www.steemsql.com) on 10 PM (PHI), June 24, 2018. The data where between April 1 and June 15, 2018.  The time frame was considered based on the historical commits made on [TeamMalaysia/Steemph.cebu](https://github.com/TeamMalaysia/Steemph.cebu/commits). 
+#### 3.1 Scope
+The analysis was performed using the data from [SteemSQL](www.steemsql.com) on 10 PM (PHI), June 24, 2018. The data where between April 1 and June 15, 2018 (post count), while for the delegation is between April 9 and June 24, 2018.  The time frame was considered based on the historical commits made on [TeamMalaysia/Steemph.cebu](https://github.com/TeamMalaysia/Steemph.cebu/commits). 
 
 The last recorded update was on May 26 where the current voting and delegation system was released. The voting mechanism is depended on the amount of SP delegated as stated earlier. By which, vote weight percentage is between 5% to 60%. 
 
 So, the query used to extract the data considers the delegation coming to the @steemph.cebu account has an effect on the number of post, votes and delegation. In addition, evaluate if the new delegation system could provide a good means and proof that it is the right path for the community. 
 
-All data involve in the analysis where taken from the TxVotes, TxTransfers, and Comments table from the [SteemSQL](www.steemsql.com) database.  By which, the data are either an average or a count of the actual number of post, votes, payout, and SP delegation. To see a better details and behavior , clustering of the data was done in accordance with the per SP delegation  rank or level. Lastly, all data were subjected to statistical measure and plotting using Microsoft Excel.
+All data involve in the analysis where taken from the TxVotes, TxTransfers, and Comments table from the [SteemSQL](www.steemsql.com) database.  By which, the data are either an average or a count of the actual number of post, votes, payout, and SP delegation. Lastly, all data were subjected to statistical measure and plotting using Microsoft Excel.
+
+#### 3.2 Limitation
+In the analysis, the effects on rewards for each post voted by @steemph.cebu bot was not included. Also, withdrawal of SP delegation were left out. So, the analysis focuses on the delegation received and the number of  post voted by @steemph.cebu. 
 
 ### 4. Data Presentation and Result <hr>
 
@@ -62,9 +72,17 @@ In addition, the overwhelming amount of SP received by the @steemph.cebu is stil
 
 ### 5. Conclusion <hr>
 
-In the first two weeks of the implementation of the new delegation system, overwhelming amount of SP delegation was received by @steemph.cebu. Sadly, the amount of SP delegation is steadily decreasing over the last 30 days of the implementation. However, we can still look forward in  the coming months a change in trends because many of community members do not have sufficient SP to delegate.
+It was a good start for the new delegation system. It has able to accumulate around 4000 SP in the first two weeks. Sadly, a substantial decline over the next two weeks has been observed. Over the last 30 days, SP delegation is steadily decreasing to the point that there were days with no delegation coming in. 
 
-A decreasing trends in the number of post voted by @stemph.cebu bot was found out after launching the new delegation system. The decrease is not bad for the community. This will show the strong will and effort of the community leader to identify and possibly eliminate the abuse of the bot.
+Sad to say, the new delegation system was unable to draw the attention of majority of community members. I think this could be attributed to members still eligible for @steemph.cebu bot vote even though there were no SP delegation, aside to those verified with less than 35 SP. Right now, members designated as stee
+
+However, on a positive note,  many community members do not have sufficient SP to delegate. Currently, there were 71 activate minnow-trail-follower (less than 35 SP) in the community discord. So, we could still look forward for more engagement through SP delegation of these community members (minnow-trail-follower).
+
+On the other hand, a decreasing trends in the number of post voted by @steemph.cebu bot was found out, after launching the new delegation system. The decrease in the post count is a natural effect as community members are still on the process of gaining new roles or not yet delegating on the community account. The decrease is not bad for the community.  The lower post count could be attributed to some community members that were not given roles on the community discord server. These members could either be new delegator rank, or unverified members. 
+
+Right now, the community admins is verifying every users to ensure that all meets with the new delegation system. Aside from verification, there were members given with probationary status for little to no engagement in the @steemph.cebu community. The drop in the post count voted by the bot could be a sign of strict implementation of the new delegation system. In addition, this could help lessen possible abuse due to multiple accounts which may be used for milking the @steemph.cebu bot.
+
+Overall, there was a warm acceptance of the new delegation system. However, the community members did not fully support the new system as delegation coming in is dropping steadily. Right now, there were only 64 members who currently delegate their SP to @steemph.cebu. We could hope that more SP coming as more minnow-trail-follower members till earning and growing their SP. In addition, the community core leader should strengthen their information drive for the new delegation system to the community members.
 <br>
 
 ### 6. Tools and Query <hr>
@@ -116,8 +134,6 @@ GROUP BY
 In addition, the data for the **members eligible for @steemph.cebu bot vote** is taken from the community discord server, [Teenvestor](https://discordapp.com/invite/BXmZcTX). For the bot updates mentioned in the text, the historical **commits** were based from [TeamMalaysia/Steemph.cebu](https://github.com/TeamMalaysia/Steemph.cebu).
 
 
-### Proof of Work: 
-
-
+#### Proof of Work: [juecoree/sql-analysis](https://github.com/juecoree/sql-analysis/tree/master)
 
 
