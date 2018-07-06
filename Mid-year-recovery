@@ -1,0 +1,116 @@
+![image.png](https://ipfs.busy.org/ipfs/Qmchme9JFnc7QPT923jNVuW17AsbEgsLXBGWUwXuqrrEu9) 
+<center><sub>Image credited to [pixabay.com](https://pixabay.com/en/phishing-fraud-cyber-security-3390518/)</sub></center>
+
+#### 1. Details <hr>
+
+Over the last six months, there were reported phishing activities in Steemit. In the last months report, I have found out that there was a steady decrease in the number of account recovery requests. In addition, fewer accounts were lost to identified phishing activities.
+
+In a attempt to find cues about the decreasing trends in recovery requests, I decided to evaluate the full trend over the last six months. In this way, we could observe that the trend is not a fluke and temporary. The metrics involves in the analysis is the same with the previous report except it is extend for the last 6 months. 
+
+So, the analysis evaluates the decreasing trend by looking into the daily recovery request and percentage of recovery to establish a concrete proof that the trend was not a fluke. In contrast, it would affirm the awareness of users about such activities that resulted to lower accounts victimized by such acts. Aside from that, it would also affirms the effective information campaign by users on phishing activities.
+
+#### Github Repository: [steemit/steem](https://github.com/steemit/steem)
+
+### 2. Scope of the Analysis <hr>
+
+#### 2.1 Scopes
+The data were extracted from [SteemSQL](www.steemsql.com) on 7 PM ( GMT +8), July 4, 2018. The core query extracts all the account recovery data from  **TxAccountRecovers** table on [SteemSQL](www.steemsql.com) between January 1 and June 30. 
+
+The query includes the daily count of account requesting for recovery which has a **FALSE** value on **TxAccountRecovers.recovers** column. In addition, the number of successfully recovered accounts was extracted from the count of data with **TRUE** value on **TxAccountRecovers.recovers** column. Additional transformation of data was done to obtain the daily percentage of success and failure on recovery. 
+
+After extracting, the data were plotted. and subjected to basic statistical measures such averages, standard deviation, as applicable. By the way, performance of recovery accounts were also considered in this analysis, specifically @steem.
+
+#### 2.2 Limitation
+The data used in evaluating the down trend in account recovery does not include accounts lost without any requests for recovery. Thus, only accounts listed for recovery in the database was included in the analysis.
+
+
+### 3. Data Presentation and Result <hr>
+
+#### 3.1 Overview 
+
+<div class="pull-left">https://ipfs.busy.org/ipfs/QmNwNsw4oFXjJssWjdAfY88rFxDTRzRC8Zz2jv7QdmPZKY<br>https://ipfs.busy.org/ipfs/QmcGndr8yfqzRa3vNnVYjhrEMCX2Kg8B7HzRWfQmUCKYgr </div>  <br>Over the last 6 months, 1,206 recovery request were made. Around 76% were successfully recovered and 24% completely lost. On average, close to 7 account request per day  was recorded. Wherein, 5 accounts were successfully recovered against close to 2 accounts lost everyday.
+<br><br>
+Amidst the increasing number of reports about phishing links on Steemit, the recovery request was observed to have been almost doubled  in May. This was highlighted by recovery 306 requests recorded. This was close to twice the previous months recovery requests. 
+<br><br>
+Typically, there are approximately close to 200 requests for recovery per month. Among this requests, 75% were successfully recovered against 25% failed recovery. Recently, June recorded 96 recovery request. It has only recorded 96 recovery requests. This is 210 less as compared 306 in May. This indicates that there is a substantial decrease in the number of accounts requesting for recovery. In addition, this would also show that phishing links has been identified resulting to a lower request for recovery.
+<br><br>
+
+#### 3.2 Recovery: Requests, Success, and Failure Trends
+
+https://ipfs.busy.org/ipfs/QmSzEukww3Zcb23YVGc2Zxncko7Ah5hCMeZSmWCxkX56XX
+
+The number of request was steadily decreasing over the last 6 months. We have seen a gradual drop in accounts requesting for recovery since usually large number of request in May. On record, there was a decrease in the numbers by 210 in the last 3 months. Majority of the request lies beneath the 25 requests line. The highest recorded number of request is at 43, and only one events has been recorded to have reach 40th mark. This was happen on February. 
+
+Overall, the plot shows that this is a significant downward trend happening on the recovery request activity. It is inevitable that the number of account requesting for recovery will suddenly increase, unless a new unidentified phishing attempts will happen. So, we can project that by the next 6 months, recovery request will go down below 100 request.  In addition, I also project that the average account recovery request will be around 3 to 4 request per day.
+<br><div class="pull-right">https://ipfs.busy.org/ipfs/QmQbMBq67ECA4yzi4rch3dcpwuNTkq5QWBvkWjXBxSQrVf <br> https://ipfs.busy.org/ipfs/Qma5wu6vTFffJPHrFkjD9EDLgBaiy6Fkkkx14VaJqSYcKY<br> https://ipfs.busy.org/ipfs/QmUfjDpsqFdL44VQcQHUdHusCs2qnRWJZPzedjLWxKbib2<br>https://ipfs.busy.org/ipfs/QmYakvr26wHw1CqG7xZuk7xSuucXFxnSpzkzbnBBCUn758</div>  **Percentage of Recovery**. In the last 6 months, 76% of all request was successfully recovered. Over the  course, 82 days have scored 95 to 100% percentage of recovery.  However, the percentage of recovery shows a downward trends that we can expect to hit around 60% recovery by next few months. This is supported by a high concentration of days getting only 57% to 94%. In addition, we can also observed from the scatter plot a high concentration of daily percentage of recovery less than 60%. So, hitting a percentage of recovery equal or less than 60% is probable.<br>
+**Percentage of Failure** . There are 24% of all account recovery request were not successful. On average, there are 2 request per day that was not successfully accomplished. Over the last 6 months, there were 111 of 180 days incurred a failure to recover percentage less than 17%. On the other hand, 100% failure attributes only to less than 7 days. In addition, from the plot, an increasing percentage of failure is projected. So, we can observed in the coming months that the odds to failure will be projected equal or above 20%.  In the previous month, a quite number of request per day was not successful. Thus, I can project that the average number of unsuccessful recovery will be close to 1 account per day. 
+
+#### 3.3 Recovery Account Performance - @steem 
+
+<div class="pull-left">https://ipfs.busy.org/ipfs/QmSLsrHhRd4op3CVZ4SCCebzm8nLqUVQaGWuuqbZ9hJHky<br>https://ipfs.busy.org/ipfs/QmbFh1XutLBuD8fcACYbbhcWCAbLeqoMMrorm1QKbSaJ6S</div> <br>Over 1,026 accounts were processed by @steem for recovery.  This is 85.24% of all account recovery request between January 1  to June 30. The @steem was able to successfully recover 819 account over the said timestamp. Recording a high success rate at 79.67%. Only failing to recover around 209 account recovery requests, which is good for 20.33% percentage of failure. 
+<br><br>
+This number is a bit lower as compared to the monthly reports wherein it has reach a percentage of recovery between 80% to 97%. However, the success rate is still acceptable as it is still closer to the 80% mark. 
+<br><br>
+The quantity of accounts being recovered by @steem is remarkably high as compared to other recovery accounts.Other accounts is only accounted for 14.76% of the total recovery request. Thus, @steem is still the most efficient and effective recovery account among others.
+<br><br>
+
+### 4. Final Thoughts <hr>
+
+The decreasing trend in the numbers of account recovery request is significantly verifiable, and was not a fluke. Hence, a significant drop in the account recovery request was recorded between January 1 to June 30. Especially, the drop observed between March and June which has a drop close to 210. 
+
+The down trend is a result of more effective information drive regarding the phishing activities on Steemit. In addition, it is also a result of a better and careful response to comments link receive by each users in Steemit. 
+
+In terms of the recovery success, the monthly measure percentage as previously reported was a bit high as compared in the full 6 months recovery percentage. Right now, the current percentage for successful recovery is at 76% which is close to 8 out of every 10 requests. On the other hand, percentage of failure is equal to 24%  which is 2 out of every 10 request is unsuccessful. 
+
+The events of lower success rate as to the 6 months data does not suggest that recovery was ineffective. However, we can say that the recovery percentage is still acceptable since the number of request were significantly declining. 
+
+Furthermore, @steem recovery account was still on top with a success rate at 79.67%. the @steem was able to recover 819 accounts over the 6 month timestamp, the recovery success is a bit lower as compared to its usual 90% success. Other account recovery only shares 14.76% of all the recovery request with a lesser success rate.
+
+Overall, the decreasing trend is projected to be sustained in the coming months. Hopefully, recovery success will be at 80%. However, from the current data, it suggest a much lower recovery success in the coming months. In addition, it is still projected that @steem will process and recover majority of the account recovery request which we can account a steadier success percentage. 
+
+Finally, we can say that, the frequent reports of spamming  and phishing comments link on Steemit was effective. This has transpired on a lesser numbers of accounts asking for recovery. More and more users has been aware of this malicious activities.
+
+### 5. Tools and Query <hr>
+
+The data extracted from the [SteemSQL](www.steemsql.com) database using Microsoft Excel. All data processing was done in Microsoft Excel which includes data visualization and statistics.
+
+A full extraction of **TxAccountRecovers** table data was done at first to observe the data and to be able to get the specific data for this analysis. The query used in the extraction is provided below.
+
+<code>SELECT*FROM TxAccountRecovers (NOLOCK)
+WHERE TxAccountRecovers.timestamp >= '2018/01/01' AND
+TxAccountRecovers.timestamp < '2018/07/01'</code>
+
+The query identifies counts for recovery request by including all data having a **FALSE** value on **TxAccountRecovers.recovers** column. In addition, the number of successfully recovered accounts was extracted from the count of data with **TRUE** value on **TxAccountRecovers.recovers** column. Additional transformation of data was done to obtain the daily percentage of success and failure on recovery. 
+
+<code>SELECT
+MONTH(TxAccountRecovers.timestamp) AS [MONTH],
+DAY(TxAccountRecovers.timestamp) AS [DAY],
+COUNT(TxAccountRecovers.account_to_recover) AS [ACCOUNT_TO_RECOVER]
+FROM
+TxAccountRecovers (NOLOCK)
+WHERE
+YEAR(TxAccountRecovers.timestamp) = 2018 AND
+TxAccountRecovers.timestamp >= '2018/01/01' AND
+TxAccountRecovers.timestamp < '2018/07/01' AND
+TxAccountRecovers.recovered = ''
+GROUP BY
+MONTH(TxAccountRecovers.timestamp),
+DAY(TxAccountRecovers.timestamp)</code>
+
+For recovery account, the data from the full **TxAccountRecovers** table extraction was imported a s a pilot table. All account recovery and account being processed was identified. For easier means, the query was used:
+
+<code>SELECT
+TxAccountRecovers.recovery_account,
+COUNT(TxAccountRecovers.recovered)
+FROM
+TxAccountRecovers (NOLOCK)
+WHERE
+TxAccountRecovers.timestamp >= '2018/01/01' AND
+TxAccountRecovers.timestamp < '2018/07/01' AND
+TxAccountRecovers.recovered = 'FALSE'
+GROUP BY
+TxAccountRecovers.recovery_account</code>
+
+Lastly, percentage of success and failure was computed and processed using Microsoft Excel. This includes data plotting and visualization.
+
+#### Proof of Work : [juecoree/sql-analysis](https://github.com/juecoree/sql-analysis)
